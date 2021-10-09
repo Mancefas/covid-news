@@ -1,7 +1,9 @@
+import React from "react";
 import "./App.css";
+import APIData from "./API/APIData";
 
 function App() {
-  return <header></header>;
+  return <APIData />;
 }
 
 export default App;
