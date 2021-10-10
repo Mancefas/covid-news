@@ -1,0 +1,22 @@
+.section {
+  text-align: center;
+  background-color: aqua;
+}
+
+.loading {
+  text-align: center;
+}
+
+@keyframes fullRotation {
+  0% {
+    transform: rotate(359deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.loopIcon {
+  animation: fullRotation infinite 2s linear;
+}

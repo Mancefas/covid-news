@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "@mui/material/Button";
 
 import classes from "./APIData.module.css";
+import Context from "../store/Context";
 
 const APIData = () => {
+  const context = useContext(Context);
+
   async function fetchDataHandler(e) {
+    context.setIsLoading(true);
     const country = e.target.value;
     const response = await fetch(
       `https://covid-19.dataflowkit.com/v1/${country}`
     );
     const data = await response.json();
-
+    context.setIsLoading(false);
     console.log(data);
+    return data;
   }
 
   return (
