@@ -9,14 +9,25 @@ const APIData = () => {
 
   async function fetchDataHandler(e) {
     context.setIsLoading(true);
+    context.setError(null);
     const country = e.target.value;
-    const response = await fetch(
-      `https://covid-19.dataflowkit.com/v1/${country}`
-    );
-    const data = await response.json();
+
+    try {
+      const response = await fetch(
+        `https://covid-19.dataflowkit.com/v1/${country}`
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+      const data = await response.json();
+
+      context.setIsLoading(false);
+      // console.log(Object.values(data));
+      context.setDataFromAPi(data);
+    } catch (error) {
+      context.setError(error.message);
+    }
     context.setIsLoading(false);
-    // console.log(Object.values(data));
-    context.setDataFromAPi(data);
   }
 
   return (
@@ -30,7 +41,6 @@ const APIData = () => {
       <Button variant="outlined" value="estonia" onClick={fetchDataHandler}>
         Estonia
       </Button>
-      <div>{/* <h3>{context.dataFromAPI}</h3> */}</div>
     </div>
   );
 };

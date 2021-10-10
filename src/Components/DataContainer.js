@@ -7,12 +7,18 @@ import Context from "../store/Context";
 const DataContainer = () => {
   const context = useContext(Context);
 
-  console.log(context.dataFromAPI);
+  // console.log(context.dataFromAPI);
   return (
     <>
       {context.isLoading && (
         <Container maxWidth="xs" className={classes.loading}>
           <p>Loading...</p> <LoopIcon className={classes.loopIcon} />
+        </Container>
+      )}
+      {!context.isLoading && context.error && (
+        <Container>
+          {" "}
+          <div>{context.error}</div>
         </Container>
       )}
       {Object.keys(context.dataFromAPI).length > 0 && (
