@@ -15,8 +15,8 @@ const APIData = () => {
     );
     const data = await response.json();
     context.setIsLoading(false);
-    console.log(data);
-    return data;
+    // console.log(Object.values(data));
+    context.setDataFromAPi(data);
   }
 
   return (
@@ -30,6 +30,7 @@ const APIData = () => {
       <Button variant="outlined" value="estonia" onClick={fetchDataHandler}>
         Estonia
       </Button>
+      <div>{/* <h3>{context.dataFromAPI}</h3> */}</div>
     </div>
   );
 };
