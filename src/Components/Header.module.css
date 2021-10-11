@@ -1,0 +1,12 @@
+.header {
+  height: fit-content;
+  border-bottom: 1px #2f76d2 solid;
+  text-align: center;
+  margin: auto;
+  color: #2f76d2;
+}
+
+.header h2 {
+  padding: 1rem;
+  font-family: "Source Sans Pro", sans-serif;
+}
