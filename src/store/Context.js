@@ -7,11 +7,14 @@ const Context = React.createContext({
   setDataFromAPi: () => {},
   error: false,
   setError: () => {},
+  moreDataFromAPI: {},
+  setMoreDataFromAPI: () => {},
 });
 
 export const ContextProvider = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [dataFromAPI, setDataFromAPi] = useState({});
+  const [moreDataFromAPI, setMoreDataFromAPI] = useState({});
   const [error, setError] = useState(null);
 
   return (
@@ -23,6 +26,8 @@ export const ContextProvider = (props) => {
         setDataFromAPi: setDataFromAPi,
         error: error,
         setError: setError,
+        moreDataFromAPI: moreDataFromAPI,
+        setMoreDataFromAPI: setMoreDataFromAPI,
       }}
     >
       {props.children}

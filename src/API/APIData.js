@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Button from "@mui/material/Button";
 
 import classes from "./APIData.module.css";
@@ -21,9 +21,25 @@ const APIData = () => {
       }
       const data = await response.json();
 
-      context.setIsLoading(false);
+      // context.setIsLoading(false);
       // console.log(Object.values(data));
       context.setDataFromAPi(data);
+    } catch (error) {
+      context.setError(error.message);
+    }
+
+    try {
+      async function fetchMoreDataHandler() {
+        const response2 = await fetch(
+          `https://covid-api.mmediagroup.fr/v1/vaccines?country=${country}`
+        );
+        const data2 = await response2.json();
+        if (!response2.ok) {
+          throw new Error("Something vent wrong");
+        }
+        context.setMoreDataFromAPI(data2.All);
+      }
+      fetchMoreDataHandler();
     } catch (error) {
       context.setError(error.message);
     }
@@ -32,13 +48,13 @@ const APIData = () => {
 
   return (
     <div className={classes.btnPlace}>
-      <Button variant="outlined" value="lithuania" onClick={fetchDataHandler}>
+      <Button variant="outlined" value="Lithuania" onClick={fetchDataHandler}>
         Lithuania
       </Button>
-      <Button variant="outlined" value="latvia" onClick={fetchDataHandler}>
+      <Button variant="outlined" value="Latvia" onClick={fetchDataHandler}>
         Latvia
       </Button>
-      <Button variant="outlined" value="estonia" onClick={fetchDataHandler}>
+      <Button variant="outlined" value="Estonia" onClick={fetchDataHandler}>
         Estonia
       </Button>
     </div>
