@@ -7,44 +7,32 @@ import Context from "../store/Context";
 const APIData = () => {
   const context = useContext(Context);
 
-  async function fetchDataHandler(e) {
+  const fetchDataHandler = async (e) => {
     context.setIsLoading(true);
     context.setError(null);
     const country = e.target.value;
 
     try {
-      const response = await fetch(
-        `https://covid-19.dataflowkit.com/v1/${country}`
-      );
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-      const data = await response.json();
+      const response = await Promise.all([
+        fetch(`https://covid-19.dataflowkit.com/v1/${country}`),
+        fetch(
+          `https://covid-api.mmediagroup.fr/v1/vaccines?country=${country}`
+        ),
+      ]);
 
-      // context.setIsLoading(false);
-      // console.log(Object.values(data));
+      // Can't use !response.ok, because 2nd API always returns response OK. Doesn't matter if there is a error or not, but response is OK
+      // if (!response.ok) {
+      //   //       throw new Error("Something went wrong!");
+      //   //     }
+
+      const data = await Promise.all(response.map((r) => r.json()));
       context.setDataFromAPi(data);
     } catch (error) {
       context.setError(error.message);
     }
 
-    try {
-      async function fetchMoreDataHandler() {
-        const response2 = await fetch(
-          `https://covid-api.mmediagroup.fr/v1/vaccines?country=${country}`
-        );
-        const data2 = await response2.json();
-        if (!response2.ok) {
-          throw new Error("Something vent wrong");
-        }
-        context.setMoreDataFromAPI(data2.All);
-      }
-      fetchMoreDataHandler();
-    } catch (error) {
-      context.setError(error.message);
-    }
     context.setIsLoading(false);
-  }
+  };
 
   return (
     <div className={classes.btnPlace}>
