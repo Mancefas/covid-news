@@ -7,6 +7,14 @@ import Context from "../store/Context";
 const APIData = () => {
   const context = useContext(Context);
 
+  const initDataHandler = async () => {
+    const response = await fetch(
+      "https://covid-api.mmediagroup.fr/v1/cases?country=All"
+    );
+    const data = response.data.json();
+    console.log(data);
+  };
+
   const fetchDataHandler = async (e) => {
     context.setIsLoading(true);
     context.setError(null);
