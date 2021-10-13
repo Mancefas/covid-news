@@ -9,6 +9,7 @@ const APIData = () => {
 
   useEffect(() => {
     const fetchInitData = async () => {
+      context.setIsLoadingInit(true);
       try {
         const response = await fetch(
           "https://covid-19.dataflowkit.com/v1/World"
@@ -19,6 +20,7 @@ const APIData = () => {
       } catch (error) {
         context.setError(error.message);
       }
+      context.setIsLoadingInit(false);
     };
     fetchInitData();
   }, []);

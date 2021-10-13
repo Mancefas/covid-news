@@ -1,33 +1,39 @@
 import React, { useContext } from "react";
-import { Container, Grid, Paper } from "@mui/material";
+import { Container, Grid, Paper, CircularProgress } from "@mui/material";
+import classes from "./WorldDataContainer.module.css";
 import Context from "../store/Context";
 
 const WorldDataContainer = () => {
   const context = useContext(Context);
   return (
-    <Container>
-      <Grid container spacing={2} spacing={4}>
-        <Grid item md={12}>
-          <Paper elevation={3}>
-            <h3>World news first ({context.initData["Last Update"]})</h3>
-          </Paper>
+    <Container className={classes.container}>
+      {context.isLoadingInit && <CircularProgress color="inherit" />}
+      {!context.isLoadingInit && (
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={12}>
+            <Paper elevation={6} className={classes.paper1}>
+              <h3>World news ({context.initData["Last Update"]})</h3>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Paper elevation={4} className={classes.paper_other}>
+              Cases: {context.initData["Total Cases_text"]}{" "}
+              {context.initData["New Cases_text"]}
+            </Paper>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Paper elevation={4} className={classes.paper_other}>
+              Recovered: {context.initData["Total Recovered_text"]}
+            </Paper>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Paper elevation={4} className={classes.paper_other}>
+              Deaths {context.initData["Total Deaths_text"]}{" "}
+              {context.initData["New Deaths_text"]}{" "}
+            </Paper>
+          </Grid>
         </Grid>
-        <Grid item xs={4}>
-          <Paper>
-            Cases: {context.initData["Total Cases_text"]}{" "}
-            {context.initData["New Cases_text"]}
-          </Paper>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper>Recovered: {context.initData["Total Recovered_text"]}</Paper>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper>
-            Deaths {context.initData["Total Deaths_text"]}{" "}
-            {context.initData["New Deaths_text"]}{" "}
-          </Paper>
-        </Grid>
-      </Grid>
+      )}
     </Container>
   );
 };
