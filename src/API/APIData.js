@@ -7,13 +7,21 @@ import Context from "../store/Context";
 const APIData = () => {
   const context = useContext(Context);
 
-  const initDataHandler = async () => {
-    const response = await fetch(
-      "https://covid-api.mmediagroup.fr/v1/cases?country=All"
-    );
-    const data = response.data.json();
-    console.log(data);
-  };
+  useEffect(() => {
+    const fetchInitData = async () => {
+      try {
+        const response = await fetch(
+          "https://covid-19.dataflowkit.com/v1/World"
+        );
+        const data = await response.json();
+        context.setInitData(data);
+        console.log(data);
+      } catch (error) {
+        context.setError(error.message);
+      }
+    };
+    fetchInitData();
+  }, []);
 
   const fetchDataHandler = async (e) => {
     context.setIsLoading(true);

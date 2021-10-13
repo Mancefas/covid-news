@@ -7,12 +7,15 @@ const Context = React.createContext({
   setDataFromAPi: () => {},
   error: false,
   setError: () => {},
+  initData: {},
+  setInitData: () => {},
 });
 
 export const ContextProvider = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [dataFromAPI, setDataFromAPi] = useState({});
   const [error, setError] = useState(null);
+  const [initData, setInitData] = useState({});
 
   return (
     <Context.Provider
@@ -23,6 +26,8 @@ export const ContextProvider = (props) => {
         setDataFromAPi: setDataFromAPi,
         error: error,
         setError: setError,
+        initData: initData,
+        setInitData: setInitData,
       }}
     >
       {props.children}
