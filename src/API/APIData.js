@@ -16,13 +16,13 @@ const APIData = () => {
         );
         const data = await response.json();
         context.setInitData(data);
-        console.log(data);
       } catch (error) {
         context.setError(error.message);
       }
       context.setIsLoadingInit(false);
     };
     fetchInitData();
+    // eslint-disable-next-line
   }, []);
 
   const fetchDataHandler = async (e) => {
