@@ -4,6 +4,7 @@ import APIData from "./API/APIData";
 import DataContainer from "./Components/DataContainer";
 import Header from "./Components/Header";
 import WorldDataContainer from "./Components/WorldDataContainer";
+import Copyright from "./Components/Copyright";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <WorldDataContainer />
       <APIData />
       <DataContainer />
+      <Copyright />
     </>
   );
 }
