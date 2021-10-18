@@ -11,7 +11,7 @@ const WorldDataContainer = () => {
   return (
     <Container className={classes.container}>
       {context.isLoadingInit && <CircularProgress color="inherit" />}
-      {!context.isLoadingInit && (
+      {!context.isLoadingInit && !context.error && (
         <Grid container spacing={1}>
           <Grid item xs={12} md={12}>
             <Paper elevation={6} className={classes.paper1}>
