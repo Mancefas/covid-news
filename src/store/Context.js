@@ -23,8 +23,6 @@ export const ContextProvider = (props) => {
   const [initData, setInitData] = useState({});
   const [dataFromAPI2, setDataFromAPI2] = useState([]);
 
-  console.log(dataFromAPI2);
-
   return (
     <Context.Provider
       value={{

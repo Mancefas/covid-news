@@ -5,6 +5,7 @@ import Context from "../store/Context";
 import AddReactionSharpIcon from "@mui/icons-material/AddReactionSharp";
 import CoronavirusIcon from "@mui/icons-material/Coronavirus";
 import AirlineSeatIndividualSuiteIcon from "@mui/icons-material/AirlineSeatIndividualSuite";
+import PublicIcon from "@mui/icons-material/Public";
 
 const WorldDataContainer = () => {
   const context = useContext(Context);
@@ -15,7 +16,11 @@ const WorldDataContainer = () => {
         <Grid container spacing={1}>
           <Grid item xs={12} md={12}>
             <Paper elevation={6} className={classes.paper1}>
-              <h3>World news ({context.initData["Last Update"]})</h3>
+              <h3>
+                {" "}
+                <PublicIcon color={"action"} fontSize={"large"} />
+                World news ({context.initData["Last Update"]})
+              </h3>
             </Paper>
           </Grid>
           <Grid item xs={12} sm={4}>
