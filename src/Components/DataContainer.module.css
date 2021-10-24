@@ -23,6 +23,14 @@
   color: red;
 }
 
+.firstContainer {
+  min-height: 20vh;
+}
+
+.secondContainer {
+  min-height: 20vh;
+}
+
 @keyframes fullRotation {
   0% {
     transform: rotate(359deg);
@@ -35,4 +43,14 @@
 
 .loopIcon {
   animation: fullRotation infinite 2s linear;
+}
+
+@media screen and (max-width: 700px) {
+  .firstContainer {
+    min-height: 20vh;
+  }
+
+  .secondContainer {
+    min-height: 46vh;
+  }
 }

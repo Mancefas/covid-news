@@ -28,10 +28,10 @@ const DataContainer = () => {
         <Grid item xs={6} sm={6}>
           {context.dataFromAPI.length > 0 && (
             <Container className={classes.numbers}>
-              <Grid container spacing={7}>
+              <Grid container spacing={2}>
                 {context.dataFromAPI.map((el) => (
                   <Grid item xs={12} sm={12}>
-                    <Paper elevation={4}>
+                    <Paper elevation={4} className={classes.firstContainer}>
                       <h3>
                         Any good news in{" "}
                         {el.All.abbreviation === "LT" ? "Lithuania" : ""}
@@ -66,7 +66,7 @@ const DataContainer = () => {
               <Grid container spacing={2}>
                 {context.dataFromAPI2.map((el) => (
                   <Grid item xs={12} sm={12}>
-                    <Paper elevation={4}>
+                    <Paper elevation={4} className={classes.secondContainer}>
                       <h3>
                         Not good news in{" "}
                         {el["Country_text"] === "Lithuania" ? "Lithuania" : ""}
