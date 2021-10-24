@@ -9,4 +9,12 @@
 
 .paper_other {
   padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.red {
+  color: rgb(216, 34, 34);
 }

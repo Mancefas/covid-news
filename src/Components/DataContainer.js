@@ -74,19 +74,24 @@ const DataContainer = () => {
                         {el["Country_text"] === "Estonia" ? "Estonia" : ""}...
                       </h3>
                       <h4>Latest news as of {el["Last Update"]}</h4>
-                      <p>
+                      <p className={classes.textRow}>
                         <CoronavirusIcon fontSize={"small"} color={"primary"} />
-                        Cases: {el["Total Cases_text"].replace(",", "")}{" "}
-                        {el["New Cases_text"].replace(",", "")}
+                        <p> Cases: </p>{" "}
+                        <p> {el["Total Cases_text"].replace(",", "")}</p>
+                        <p className={classes.red}>
+                          {" "}
+                          {el["New Cases_text"].replace(",", "")}
+                        </p>
                       </p>
-                      <p>
+                      <p className={classes.textRow}>
                         {" "}
                         <AirlineSeatIndividualSuiteIcon
                           fontSize={"small"}
                           color={"error"}
                         />
-                        Deaths {el["Total Deaths_text"].replace(",", "")}{" "}
-                        {el["New Deaths_text"]}{" "}
+                        <p>Deaths </p>
+                        <p>{el["Total Deaths_text"].replace(",", "")} </p>
+                        <p className={classes.red}>{el["New Deaths_text"]} </p>
                       </p>
                       <p>
                         <AddReactionSharpIcon

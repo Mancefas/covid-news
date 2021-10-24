@@ -31,6 +31,21 @@
   min-height: 20vh;
 }
 
+.textRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.red {
+  color: rgb(216, 34, 34);
+}
+
+.yellow {
+  color: yellowgreen;
+}
+
 @keyframes fullRotation {
   0% {
     transform: rotate(359deg);

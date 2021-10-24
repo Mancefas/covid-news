@@ -26,8 +26,11 @@ const WorldDataContainer = () => {
           <Grid item xs={12} sm={4}>
             <Paper elevation={4} className={classes.paper_other}>
               <CoronavirusIcon fontSize={"small"} color={"primary"} />
-              Cases: {context.initData["Total Cases_text"]}{" "}
-              {context.initData["New Cases_text"]}
+              <p>Cases: </p>
+              <p>{context.initData["Total Cases_text"]}</p>{" "}
+              <p className={classes.red}>
+                {context.initData["New Cases_text"]}
+              </p>
             </Paper>
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -42,8 +45,11 @@ const WorldDataContainer = () => {
                 fontSize={"small"}
                 color={"error"}
               />
-              Deaths {context.initData["Total Deaths_text"]}{" "}
-              {context.initData["New Deaths_text"]}{" "}
+              <p>Deaths </p>
+              <p>{context.initData["Total Deaths_text"]} </p>{" "}
+              <p className={classes.red}>
+                {context.initData["New Deaths_text"]}{" "}
+              </p>{" "}
             </Paper>
           </Grid>
         </Grid>
