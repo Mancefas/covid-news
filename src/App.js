@@ -9,9 +9,9 @@ import Copyright from "./Components/Copyright";
 function App() {
   return (
     <>
+      <APIData />
       <Header />
       <WorldDataContainer />
-      <APIData />
       <DataContainer />
       <Copyright />
     </>

@@ -11,6 +11,8 @@ const Context = React.createContext({
   setInitData: () => {},
   isLoadingInit: false,
   setIsLoadingInit: () => {},
+  dataFromAPI2: [],
+  setDataFromAPI2: () => {},
 });
 
 export const ContextProvider = (props) => {
@@ -19,6 +21,9 @@ export const ContextProvider = (props) => {
   const [dataFromAPI, setDataFromAPi] = useState({});
   const [error, setError] = useState(null);
   const [initData, setInitData] = useState({});
+  const [dataFromAPI2, setDataFromAPI2] = useState([]);
+
+  console.log(dataFromAPI2);
 
   return (
     <Context.Provider
@@ -33,6 +38,8 @@ export const ContextProvider = (props) => {
         setInitData: setInitData,
         isLoadingInit: isLoadingInit,
         setIsLoadingInit: setIsLoadingInit,
+        dataFromAPI2: dataFromAPI2,
+        setDataFromAPI2: setDataFromAPI2,
       }}
     >
       {props.children}

@@ -14,6 +14,15 @@
   border-radius: 4px;
 }
 
+.numbers {
+  text-align: center;
+  padding-top: 2rem;
+}
+.failed {
+  text-align: center;
+  color: red;
+}
+
 @keyframes fullRotation {
   0% {
     transform: rotate(359deg);

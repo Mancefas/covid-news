@@ -1,7 +1,4 @@
-import React, { useContext, useEffect } from "react";
-import Button from "@mui/material/Button";
-
-import classes from "./APIData.module.css";
+import { useContext, useEffect } from "react";
 import Context from "../store/Context";
 
 const APIData = () => {
@@ -11,11 +8,15 @@ const APIData = () => {
     const fetchInitData = async () => {
       context.setIsLoadingInit(true);
       try {
-        const response = await fetch(
-          "https://covid-19.dataflowkit.com/v1/World"
-        );
-        const data = await response.json();
-        context.setInitData(data);
+        const response = await Promise.all([
+          fetch("https://covid-19.dataflowkit.com/v1/World"),
+          fetch("https://covid-19.dataflowkit.com/v1/Lithuania"),
+          fetch("https://covid-19.dataflowkit.com/v1/Latvia"),
+          fetch("https://covid-19.dataflowkit.com/v1/Estonia"),
+        ]);
+        const data = await Promise.all(response.map((r) => r.json()));
+        context.setInitData(data[0]);
+        context.setDataFromAPI2(data.slice(1, 4));
       } catch (error) {
         context.setError(error.message);
       }
@@ -25,46 +26,48 @@ const APIData = () => {
     // eslint-disable-next-line
   }, []);
 
-  const fetchDataHandler = async (e) => {
-    context.setIsLoading(true);
-    context.setError(null);
-    const country = e.target.value;
+  useEffect(() => {
+    const fetchDataHandler = async () => {
+      context.setIsLoading(true);
+      context.setError(null);
+      // const country = e.target.value;
 
-    try {
-      const response = await Promise.all([
-        fetch(`https://covid-19.dataflowkit.com/v1/${country}`),
-        fetch(
-          `https://covid-api.mmediagroup.fr/v1/vaccines?country=${country}`
-        ),
-      ]);
+      try {
+        const response = await Promise.all([
+          fetch(
+            `https://covid-api.mmediagroup.fr/v1/vaccines?country=Lithuania`
+          ),
+          fetch(`https://covid-api.mmediagroup.fr/v1/vaccines?country=Latvia`),
+          fetch(`https://covid-api.mmediagroup.fr/v1/vaccines?country=Estonia`),
+        ]);
 
-      // Can't use !response.ok, because 2nd API always returns response OK. Doesn't matter if there is a error or not, but response is OK
-      // if (!response.ok) {
-      //   //       throw new Error("Something went wrong!");
-      //   //     }
+        // Can't use !response.ok, because 2nd API always returns response OK. Doesn't matter if there is a error or not, but response is OK
+        // if (!response.ok) {
+        //   //       throw new Error("Something went wrong!");
+        //   //     }
 
-      const data = await Promise.all(response.map((r) => r.json()));
-      context.setDataFromAPi(data);
-    } catch (error) {
-      context.setError(error.message);
-    }
-
-    context.setIsLoading(false);
-  };
-
-  return (
-    <div className={classes.btnPlace}>
-      <Button variant="outlined" value="Lithuania" onClick={fetchDataHandler}>
-        Lithuania
-      </Button>
-      <Button variant="outlined" value="Latvia" onClick={fetchDataHandler}>
-        Latvia
-      </Button>
-      <Button variant="outlined" value="Estonia" onClick={fetchDataHandler}>
-        Estonia
-      </Button>
-    </div>
-  );
+        const data = await Promise.all(response.map((r) => r.json()));
+        context.setDataFromAPi(data);
+      } catch (error) {
+        context.setError(error.message);
+      }
+      context.setIsLoading(false);
+    };
+    fetchDataHandler();
+    // eslint-disable-next-line
+  }, []);
+  return null;
+  // <div className={classes.btnPlace}>
+  //   <Button variant="outlined" value="Lithuania" onClick={fetchDataHandler}>
+  //     Lithuania
+  //   </Button>
+  //   <Button variant="outlined" value="Latvia" onClick={fetchDataHandler}>
+  //     Latvia
+  //   </Button>
+  //   <Button variant="outlined" value="Estonia" onClick={fetchDataHandler}>
+  //     Estonia
+  //   </Button>
+  // </div>
 };
 
 export default APIData;
