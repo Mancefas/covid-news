@@ -101,6 +101,20 @@ const DataContainer = () => {
                         Recovered:{" "}
                         {el["Total Recovered_text"].replace(",", " ")}
                       </p>
+                      <p>
+                        Death rate :{" "}
+                        {(
+                          (el["Total Deaths_text"].replace(",", "") * 100) /
+                          el["Total Cases_text"].replace(",", "")
+                        ).toFixed(2)}
+                        % Recover rate :{" "}
+                        {(
+                          (el["Total Recovered_text"].replace(",", "") * 100) /
+                          (el["Total Cases_text"].replace(",", "") -
+                            el["Active Cases_text"].replace(",", ""))
+                        ).toFixed(2)}
+                        %
+                      </p>
                     </Paper>
                   </Grid>
                 ))}
