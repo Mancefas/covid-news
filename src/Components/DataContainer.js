@@ -6,6 +6,7 @@ import Context from "../store/Context";
 import CoronavirusIcon from "@mui/icons-material/Coronavirus";
 import AirlineSeatIndividualSuiteIcon from "@mui/icons-material/AirlineSeatIndividualSuite";
 import AddReactionSharpIcon from "@mui/icons-material/AddReactionSharp";
+import PeopleIcon from "@mui/icons-material/People";
 
 const DataContainer = () => {
   const context = useContext(Context);
@@ -45,18 +46,17 @@ const DataContainer = () => {
                         There are {el.All.people_vaccinated} fully vaccinated
                         people.
                       </p>
-                      <p>
-                        {" "}
-                        That is{" "}
+                      <p className={classes.textRow}>
+                        <PeopleIcon /> That is{" "}
                         {Math.round(
                           (el.All.people_vaccinated * 100) / el.All.population
                         )}
                         % of population.
                       </p>
-                      <p>
-                        And there are {el.All.people_partially_vaccinated}{" "}
-                        partially vaccinated people.{" "}
-                      </p>
+                      {/* <p>
+                        Partially vaccinated -{" "}
+                        {el.All.people_partially_vaccinated} .{" "}
+                      </p> */}
                     </Paper>
                   </Grid>
                 ))}

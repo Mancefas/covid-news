@@ -25,10 +25,16 @@
 
 .firstContainer {
   min-height: 25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .secondContainer {
   min-height: 25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .textRow {
@@ -60,14 +66,14 @@
   animation: fullRotation infinite 2s linear;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
   .firstContainer {
-    min-height: 40vh;
+    min-height: 28vh;
     width: fit-content;
   }
 
   .secondContainer {
-    min-height: 40vh;
+    min-height: 28vh;
     width: fit-content;
   }
 
