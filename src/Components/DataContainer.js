@@ -7,14 +7,15 @@ import CoronavirusIcon from "@mui/icons-material/Coronavirus";
 import AirlineSeatIndividualSuiteIcon from "@mui/icons-material/AirlineSeatIndividualSuite";
 import AddReactionSharpIcon from "@mui/icons-material/AddReactionSharp";
 import PeopleIcon from "@mui/icons-material/People";
+import Charts from "./Charts";
 
 const DataContainer = () => {
   const context = useContext(Context);
 
-  console.log(context.dataFromAPI2);
-
   return (
     <>
+      <Charts />
+
       {context.isLoading && (
         <Container maxWidth="xs" className={classes.loading}>
           <p>Loading...</p> <LoopIcon className={classes.loopIcon} />
