@@ -1,4 +1,4 @@
-import React, { useContext, lazy } from "react";
+import React, { useContext } from "react";
 import Context from "../store/Context";
 import { VictoryBar, VictoryChart, VictoryAxis } from "victory";
 import { Container } from "@mui/material";
