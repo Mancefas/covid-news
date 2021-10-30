@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Container, Grid, Paper, CircularProgress } from "@mui/material";
+import { Container, Grid, Paper, CircularProgress, Box } from "@mui/material";
 import classes from "./WorldDataContainer.module.css";
 import Context from "../store/Context";
 import AddReactionSharpIcon from "@mui/icons-material/AddReactionSharp";
@@ -12,6 +12,13 @@ const WorldDataContainer = () => {
   return (
     <Container className={classes.container}>
       {context.isLoadingInit && <CircularProgress color="inherit" />}
+      {!context.isLoading && context.error && (
+        <Container>
+          <Box component="span">
+            <h5 className={classes.red}> {context.error} data </h5>
+          </Box>
+        </Container>
+      )}
       {!context.isLoadingInit && !context.error && (
         <Grid container spacing={1}>
           <Grid item xs={12} md={12}>

@@ -21,6 +21,10 @@
 .failed {
   text-align: center;
   color: red;
+  width: 50% !important;
+  border: 1px dashed grey;
+  padding: 1rem;
+  margin: 2rem;
 }
 
 .firstContainer {

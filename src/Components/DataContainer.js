@@ -20,16 +20,18 @@ const DataContainer = () => {
           <p>Loading...</p> <LoopIcon className={classes.loopIcon} />
         </Container>
       )}
-      {!context.isLoading && context.error && (
-        <Container className={classes.failed}>
-          <Box component="span" sx={{ p: 2, border: "1px dashed grey" }}>
-            {context.error} data
-          </Box>
-        </Container>
-      )}
+
       <Grid container spacing={2}>
         <Grid item xs={6} sm={6}>
-          {context.dataFromAPI.length > 0 && (
+          {!context.isLoading && context.error2 && (
+            <Container className={classes.failed}>
+              <Box className={classes.errBox} component="span">
+                <h5>{context.error2} data about vaccines</h5>
+              </Box>
+            </Container>
+          )}
+
+          {context.dataFromAPI.length > 0 && !context.error2 && (
             <Container className={classes.numbers}>
               <Grid container spacing={2}>
                 {context.dataFromAPI.map((el) => (
@@ -66,8 +68,15 @@ const DataContainer = () => {
         </Grid>
 
         <Grid item xs={6} sm={6}>
+          {!context.isLoading && context.error && (
+            <Container className={classes.failed}>
+              <Box component="span">
+                <h5> {context.error} data </h5>
+              </Box>
+            </Container>
+          )}
           {/* Data From dif API  */}
-          {context.dataFromAPI2.length > 0 && (
+          {context.dataFromAPI2.length > 0 && !context.error && (
             <Container className={classes.numbers}>
               <Grid container spacing={2}>
                 {context.dataFromAPI2.map((el) => (

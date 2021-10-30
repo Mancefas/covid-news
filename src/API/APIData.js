@@ -29,7 +29,7 @@ const APIData = () => {
   useEffect(() => {
     const fetchDataHandler = async () => {
       context.setIsLoading(true);
-      context.setError(null);
+      context.setError2(null);
       // const country = e.target.value;
 
       try {
@@ -49,7 +49,7 @@ const APIData = () => {
         const data = await Promise.all(response.map((r) => r.json()));
         context.setDataFromAPi(data);
       } catch (error) {
-        context.setError(error.message);
+        context.setError2(error.message);
       }
       context.setIsLoading(false);
     };
