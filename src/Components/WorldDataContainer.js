@@ -12,14 +12,14 @@ const WorldDataContainer = () => {
   return (
     <Container className={classes.container}>
       {context.isLoadingInit && <CircularProgress color="inherit" />}
-      {!context.isLoading && context.error && (
+      {!context.isLoading && context.error2 && (
         <Container>
           <Box component="span">
-            <h5 className={classes.red}> {context.error} data </h5>
+            <h5 className={classes.red}> {context.error2} data </h5>
           </Box>
         </Container>
       )}
-      {!context.isLoadingInit && !context.error && (
+      {!context.isLoadingInit && !context.error2 && (
         <Grid container spacing={1}>
           <Grid item xs={12} md={12}>
             <Paper elevation={6} className={classes.paper1}>

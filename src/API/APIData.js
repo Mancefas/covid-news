@@ -5,31 +5,9 @@ const APIData = () => {
   const context = useContext(Context);
 
   useEffect(() => {
-    const fetchInitData = async () => {
-      context.setIsLoadingInit(true);
-      try {
-        const response = await Promise.all([
-          fetch("https://covid-19.dataflowkit.com/v1/World"),
-          fetch("https://covid-19.dataflowkit.com/v1/Lithuania"),
-          fetch("https://covid-19.dataflowkit.com/v1/Latvia"),
-          fetch("https://covid-19.dataflowkit.com/v1/Estonia"),
-        ]);
-        const data = await Promise.all(response.map((r) => r.json()));
-        context.setInitData(data[0]);
-        context.setDataFromAPI2(data.slice(1, 4));
-      } catch (error) {
-        context.setError(error.message);
-      }
-      context.setIsLoadingInit(false);
-    };
-    fetchInitData();
-    // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
     const fetchDataHandler = async () => {
       context.setIsLoading(true);
-      context.setError2(null);
+      context.setError(null);
       // const country = e.target.value;
 
       try {
@@ -49,25 +27,39 @@ const APIData = () => {
         const data = await Promise.all(response.map((r) => r.json()));
         context.setDataFromAPi(data);
       } catch (error) {
-        context.setError2(error.message);
+        context.setError("Sorry something went wrong...No data about vaccines");
+        console.log(error.message);
       }
       context.setIsLoading(false);
     };
     fetchDataHandler();
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    const fetchInitData = async () => {
+      context.setIsLoadingInit(true);
+      context.setError2(null);
+      try {
+        const response = await Promise.all([
+          fetch("https://covid-19.dataflowkit.com/v1/World"),
+          fetch("https://covid-19.dataflowkit.com/v1/Lithuania"),
+          fetch("https://covid-19.dataflowkit.com/v1/Latvia"),
+          fetch("https://covid-19.dataflowkit.com/v1/Estonia"),
+        ]);
+        const data = await Promise.all(response.map((r) => r.json()));
+        context.setInitData(data[0]);
+        context.setDataFromAPI2(data.slice(1, 4));
+      } catch (error) {
+        context.setError2(error.message);
+      }
+      context.setIsLoadingInit(false);
+    };
+    fetchInitData();
+    // eslint-disable-next-line
+  }, []);
+
   return null;
-  // <div className={classes.btnPlace}>
-  //   <Button variant="outlined" value="Lithuania" onClick={fetchDataHandler}>
-  //     Lithuania
-  //   </Button>
-  //   <Button variant="outlined" value="Latvia" onClick={fetchDataHandler}>
-  //     Latvia
-  //   </Button>
-  //   <Button variant="outlined" value="Estonia" onClick={fetchDataHandler}>
-  //     Estonia
-  //   </Button>
-  // </div>
 };
 
 export default APIData;
