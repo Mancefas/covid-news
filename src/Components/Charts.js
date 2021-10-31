@@ -13,13 +13,17 @@ const Charts = () => {
 
   return (
     <>
-      {context.dataFromAPI2.length > 0 && (
+      {context.dataFromAPI2["New Cases_text"] && (
         <Container maxWidth="xs" sx={{ textAlign: "center", p: "1rem" }}>
           <h3>Cases</h3>
           <VictoryChart domainPadding={35}>
             <VictoryAxis
               tickValues={[1, 2, 3]}
-              tickFormat={["Lithuania", "Latvia", "Estonia"]}
+              tickFormat={[
+                `${data[0].country}`,
+                `${data[1].country}`,
+                `${data[2].country}`,
+              ]}
             />
             <VictoryAxis dependentAxis />
             <VictoryBar data={data} x={"country"} y={"cases"} />
