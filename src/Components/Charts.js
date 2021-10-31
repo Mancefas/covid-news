@@ -11,9 +11,11 @@ const Charts = () => {
     cases: +elm["New Cases_text"].replace(",", "").replace("+", ""),
   }));
 
+  console.log(data);
+
   return (
     <>
-      {context.dataFromAPI2["New Cases_text"] && (
+      {data.length > 0 && (
         <Container maxWidth="xs" sx={{ textAlign: "center", p: "1rem" }}>
           <h3>Cases</h3>
           <VictoryChart domainPadding={35}>
