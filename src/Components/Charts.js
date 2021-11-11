@@ -11,13 +11,11 @@ const Charts = () => {
     cases: +elm["New Cases_text"].replace(",", "").replace("+", ""),
   }));
 
-  console.log(data);
-
   return (
     <>
       {data.length > 0 && (
         <Container maxWidth="xs" sx={{ textAlign: "center", p: "1rem" }}>
-          <h3>Cases</h3>
+          <h3>Daily Cases</h3>
           <VictoryChart domainPadding={35}>
             <VictoryAxis
               tickValues={[1, 2, 3]}
