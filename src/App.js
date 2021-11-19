@@ -5,6 +5,7 @@ import DataContainer from "./Components/DataContainer";
 import Header from "./Components/Header";
 import WorldDataContainer from "./Components/WorldDataContainer";
 import Copyright from "./Components/Copyright";
+import SearchCountry from "./Components/SearchCountry";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Header />
       <WorldDataContainer />
       <DataContainer />
+      <SearchCountry />
       <Copyright />
     </>
   );
