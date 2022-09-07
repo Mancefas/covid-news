@@ -5,8 +5,8 @@ const Copyright = () => {
   return (
     <div className={classes.copyright}>
       <CopyrightIcon fontSize={"small"} />
-      <p>All rights reserved</p>
-      <a href="https://devportfolio.eu/">Made by Mantvydas</a>
+      <p>2021 All rights reserved</p>
+      <a href="https://mantvydasportfolio.site/">Made by Mantvydas</a>
     </div>
   );
 };
